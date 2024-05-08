@@ -78,6 +78,7 @@ The evaluation board offers three ways for power supply: 1)ADP 5070 with LDOS 2)
 
 <details>
 <summary><b>Step 2: Important Pins before communication</b></summary>
+    
 - CLR: Active when it is LOW. This will set the output of the DAC to a default value. This pin must be set to HIGH to avoid constantly clearing the output.
 - RESET: Active when it is LOW. This will reset the DAC back to the power-on state. This pin must be set to HIGH to avoid constantly reseting.
 - SDIN: Serial Data Input. Connect it to MOSI for SPI.
