@@ -78,7 +78,13 @@ The evaluation board offers three ways for power supply: 1)ADP 5070 with LDOS 2)
 
 <details>
 <summary><b>Step 2: Important Pins before communication</b></summary>
-
+- CLR: Active when it is LOW. This will set the output of the DAC to a default value. This pin must be set to HIGH to avoid constantly clearing the output.
+- RESET: Active when it is LOW. This will reset the DAC back to the power-on state. This pin must be set to HIGH to avoid constantly reseting.
+- SDIN: Serial Data Input. Connect it to MOSI for SPI.
+- SYNC: Don't be confused by the name. It serves as the function of CS. This must be set to LOW for the DAC board to start communication and set to HIGH when the communication is over. At HIGH, the DAC board will refuse to communicate through SPI.
+- SCLK: Clock for SPI
+- SDO: Serial Data Output. Connect it to MISO for SPI.
+- LDAC: Active when it is LOW. When you write to the DAC register, the previous value will not be erased. Only when the LDAC is active, the old value will be erased and the new-written value starts to become the true output. To perform a real time update, LDAC must be set to LOW.
 
 
 </details>
