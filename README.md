@@ -72,7 +72,7 @@ The evaluation board offers three ways for power supply: 1)ADP 5070 with LDOS 2)
 
 ![Schematic Power Connection](Miscellaneous/Sch_power.png)
 
-![Schematic Power Connection](Miscellaneous/Screenshot 2024-05-07 225112.png)
+![Schematic Power Connection](Miscellaneous/sc)
 
 ![Schematic Power Connection](Miscellaneous/power_choice.png)
 
