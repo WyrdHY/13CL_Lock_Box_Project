@@ -87,7 +87,30 @@ The evaluation board offers three ways for power supply: 1)ADP 5070 with LDOS 2)
 
 <details>
   <summary><b>Step 3: Setup the Control Register</b></summary>
+Below is a summary of the 24-bit register settings for the DAC:
 
+| Bit(s) | Name       | Description                                                     | Setting | Function                                                      |
+|--------|------------|-----------------------------------------------------------------|---------|---------------------------------------------------------------|
+| 23      | RBUF       | Output amplifier configuration control.                         | 0       | Internal amplifier powered up.                                |
+|        |            |                                                                 | 1       | Internal amplifier powered down (default).                    |
+| 22 | OPGND      | Output ground clamp control.                                    | 0       | DAC output clamp to ground removed, DAC in normal mode.       |
+|        |            |                                                                 | 1       | DAC output clamped to ground, DAC in tristate mode (default). |
+| 21    | DACTRI     | DAC tristate control.                                           | 0       | DAC in normal operating mode.                                 |
+|        |            |                                                                 | 1       | DAC in tristate mode. Tri state means that the output can exists in three different states:high.low, and high impedance  (default).                               |
+| 20      | BIN/2sC    | DAC register coding selection.                                  | 0       | Uses twos complement coding (default).                        |
+|        |            |                                                                 | 1       | Uses offset binary coding.                                    |
+| 19      | SDODIS     | SDO pin enable/disable control.                                 | 0       | SDO pin enabled (default).                                    |
+|        |            |                                                                 | 1       | SDO pin disabled (tristate).                                  |
+| 15 to 18| LIN COMP   | Linearity error compensation for varying reference input spans. | 0000    | Reference input span up to 10 V (default).                    |
+|        |            |                                                                 | 1001    | Reference input span between 10 V and 12 V.                   |
+|        |            |                                                                 | 1010    | Reference input span between 12 V and 16 V.                   |
+|        |            |                                                                 | 1011    | Reference input span between 16 V and 19 V.                   |
+|        |            |                                                                 | 1100    | Reference input span between 19 V and 20 V.                   |
+| 1     | R/overline{W} | Read/write select bit.                                       | 0       | Addressed for a write operation.                              |
+|        |            |     |1 | Addressed for a read operation |        
+|2 to 4 | Select which register to talk to| |001 | DAC|
+| || |010 | Control register|
+|Other bits||||They are useless and must be set to 0|
 
 <br>
 
