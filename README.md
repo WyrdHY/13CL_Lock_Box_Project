@@ -1,22 +1,20 @@
-# SOFTWARE FIBER TAPERING SETUP
-_Software and documentation developed by G.L. Timmerman (timmerman@physics.leidenuniv.nl)_  
-_Hardware made by Harmen van der Meer (meerh@physics.leidenuniv.nl)_  
-_Developed based on the fiber pulling setup at UCSB_
+# Laser Lock Box Project
+_Software and documentation developed by Alexander Nazeeri&Zhaozhong Cao (alexandernazeeri@ucsb.edu&zhaozhongcao@umail.ucsb.edu)_  
+_Hardware made by Hongrui Yan(hongrui_yan@ucsb.edu_  
 
-This repository contains all the software that is needed to operate the fiber tapering setup, located in the big optical lab in the big measuring hall at Leiden University. In this document a complete overview is given of how to use the software and how the backend software is structured.
+
+This repository contains all the software that is needed to operate the laser lock box based on TEENSY 4.1. In this document a complete overview is given of how to use the software and how the backend software is structured.
 
 <div style="border: 5px solid red; padding: 5px;">
-    <span style="color: red;"><b>NOTE:</b></span> This setup makes use of a heating element that goes up to 1600 °C, and translation that are extremely fragile and can break when hardware limits are reached. Please read this documentation carefully before using the fiber tapering setup. Improper use can lead to damage to the setup or dangerous situations. 
+    <span style="color: red;"><b>NOTE:</b></span> This setup involves a CW laser operating at 976nm. Though working at invisible band, please still be careful with your eyes.
 </div>
 <br>
 
-The fabrication of tapered fiber is done by heating the fiber, while simultaneously pulling on it. The pulling is done with two motorized translation stages with each a clamp that hold the fiber. The heating is done with a designated ceramic fiber heater element, which is powered with an AC power supply. The heat softens the fiber glass allowing it to increase in lenght, and thus decrease in thickness in the middle. Both the motion controller that controls the motorized stages and power supply are controlled by this software.
-
-This software is developed for Python 3.11. The source code is stored on the [Bouwmeester-Lab GitHub](https://github.com/Bouwmeester-Lab/Software-fiber-tapering-setup). The documentation accompanies version 1.0 of the software, finished on 17/10/2023. When adapting the source code, please make a separate branch on GitHub and change the documentation accordingly.
+This code is developed in Arduino IDE and in the language of C++. The code is summarized into three parts: 1) Use ADC to read the error signal, 2) Apply PID to the error signal, 2) Use DAC to output the control signal
 
 
 ## How to setup the software
-One has to realize that this software is not a complete, one click compiled program, because it is still in the process of development, and probably will be for a long time. It is necassary that its source code can be adapted to the current needs of the research easily. However, with these instructions one should be able to use the software without much knowledge of the backend code. 
+One has to realize that this software is not a complete, one click compiled program. I recommend to run and compile on the TEENSYduino, Version 1.59. This is an add-on to the Arduino IDE and the detailed installation can be found at https://www.pjrc.com/teensy/td_download.html
 
 
 
@@ -24,65 +22,17 @@ One has to realize that this software is not a complete, one click compiled prog
   <summary><b>Step 1: clone repo</b></summary>
 
 In order to run the code on a new computer, first clone the GitHub repository. If you do not have git installed, please download it here: https://git-scm.com/downloads 
-
-```powershell
-git clone https://github.com/Bouwmeester-Lab/Software-fiber-tapering-setup
-```
-
 </details>
 
 <br>
 
 <details>  
   <summary><b>Step 2: setup virtual environment</b></summary>
+    Under construction
 
-It is recommended that you setup a virtual environment in order to prevent interference of different packages that might already be on your computer. If you have Python 3.11 already on your computer you can make an environment as follows.
-
-```powershell
-python -m venv \path\to\virtual\environment
-```
-
-It is easiest to call you virtual environment `fibertaperenv`, since this folder is already included in the `.gitignore`, meaning it won't be pushed. 
-
-You can activate your virtual environment with 
-
-```powershell
-\path\to\virtual\environment\Scripts\Activate.ps1
-```
-in powershell or
-```command prompt
-\path\to\virtual\environment\Scripts\activate.bat
-```
-in command prompt. 
-
-Now while in the virtual environment in the main folder, install all the needed packages using 
-```powershell
-pip install -r requirements.txt
-```
-
-At time of development, the following versions of these packages where used. With these versions the code should work properly. 
-```
-Package                   Version
-------------------------- ---------
-numpy                     1.26.0
-pip                       23.2.1
-PyQt6                     6.4.2
-pyqt6-plugins             6.4.2.2.3
-PyQt6-Qt6                 6.4.3
-PyQt6-sip                 13.5.2
-pyqt6-tools               6.4.2.3.3
-PyVISA                    1.13.0
-qt6-applications          6.4.3.2.3
-qt6-tools                 6.4.3.1.3
-typing_extensions         4.8.0
-xmltodict                 0.13.0
-```
-If you are using a different version of Python, you can either make an environment with a specific Python version using Conda or virtualenv, or you have to figure out if the new Python version still works properly with all these packages and the code. (It is probably not going to be a huge problem if not all versions match exactly, but is something is not working, make sure to check the version of your Python and all the listed packages above.)
 
 </details>
-
 <br>
-
 <details>  
   <summary><b>Step 3: run program</b></summary>
 
