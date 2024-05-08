@@ -126,17 +126,17 @@ Below is a summary of the 24-bit register settings for the DAC:
 <br>
 <details>
   <summary><b>Step 4: Setup the DAC Register</b></summary>
-    The transfer function for this board is:
- 
-      $$
-    V_{out}(x) = \frac{VrefP-VrefN}{2^{20} - 1} \cdot x + VrefN = \frac{10+10}{2^{20} - 1} \cdot x + 10
-    $$
+  <p>The transfer function for this board is:</p>
 
-    The DAC register is extremely easy. 
+  $$
+  V_{out}(x) = \frac{VrefP-VrefN}{2^{20} - 1} \cdot x + VrefN = \frac{10+10}{2^{20} - 1} \cdot x + 10
+  $$
 
-    - bit 1: write or read. 
-    - bit 2 to 4: select which register to talk to
-    - bit 5 to 24: These 20 bits is the binary number for x
+  <p>The DAC register configuration is straightforward:</p>
+
+  - **bit 1**: Write or read.
+  - **bits 2 to 4**: Select which register to communicate with.
+  - **bits 5 to 24**: These 20 bits are the binary number for \( x \).
 
 </details>
 
