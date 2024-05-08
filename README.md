@@ -10,7 +10,7 @@ This repository contains all the software that is needed to operate the laser lo
 </div>
 <br>
 
-This code is developed in Arduino IDE and in the language of C++. The code is summarized into three parts: 1) Use ADC to read the error signal, 2) Apply PID to the error signal, 2) Use DAC to output the control signal
+This code is developed in Arduino IDE and in the language of C++. The code is summarized into three parts: 1) Use ADC to read the error signal, 2) Apply PID to the error signal, 3) Use DAC to output the control signal
 
 
 ## How to setup the software
@@ -27,8 +27,8 @@ In order to run the code on a new computer, first clone the GitHub repository. I
 <br>
 
 <details>  
-  <summary><b>Step 2: setup virtual environment</b></summary>
-    Under construction
+  <summary><b>Step 2: setup the environment</b></summary>
+    under construction
 
 
 </details>
@@ -36,55 +36,38 @@ In order to run the code on a new computer, first clone the GitHub repository. I
 <details>  
   <summary><b>Step 3: run program</b></summary>
 
-To start the program, it is recommended that you run it in a terminal. This way, you can use the output of the software in the terminal as extra monitoring or trouble shooting. To run the program use the following command. 
-```powershell
-python FiberTaperSetupSoftware.py
-```
-A window should come up with the user interface. Alternatively you can just double click the `FiberTaperSetupSoftware.py` file directly. 
+Under Construction
 
 </details>
 
 <div style="page-break-after: always;"></div>
 
-## How to use the software
+## Break Down 
 
-Opening the program, you will see the following dialog screen:
+Code will be explained here
 
-<details>  
-  <summary><b>Screenshot</b></summary>
+### DAC 
 
-![screenshot fiber taper software](miscellaneous/screenshot_fiber_taper_software.png)
-
-</details>
-
-
-The UI is split into two parts. On the left there is a step-by-step plan of how to go through the process of pulling the fiber. On the right there is a monitoring part. 
-
-### Workflow
-
-The whole procedure is cut up in 6 steps. All input fields have a set range such that no unsafe values can be put in. 
 
 <details>
-  <summary><b>Step 1: connect resources</b></summary>
+  <summary><b>Hardware Selection</b></summary>
 
-When clicking the 'connect resources' button the program will search for the ESP300 motion controller and the GwInstek ASR-2100 programmable power supply. Make sure that both devices are turned on and connected to the computer via RS232 and USB, respectively. If the resources are not connected, all other functionalities of the software are disabled. 
-
-If you want to connect a different power supply or motion controller, one can change the `mc_id` and `ps_id` arguments when calling an instance of the `FiberTaperUI` class. The software needs these identifiers to connect to the right device. The identifier is display once the device is connected. However, different devices most likely will require a connection with a different baudrate, termination character and/or number of databits. Different devices also have different ASCII-commands, so one would have to adapt the motion controller and power supply interfaces to suit a new device. 
+To achieve a good cavity locking, we require a precise output of the control signal.  We are using the evaluation EVAL-AD5791SDZ as the external DAC module. The central chip is AD5791, a powerful chip performing 1 ppm, 20-Bit, ±1 LSB INL, Voltage Output DAC.
+<br>
+The communication between the EVAL-AD5791SDZ and TEENSY 4.1 is through SPI Mode_1. 
 
 </details>
 
 <br>
 
 <details>
-  <summary><b>Step 2: homing all axes</b></summary>
+  <summary><b>Step 1: Setup the power supply connection</b></summary>
 
-Before the motorized translation stages can be used, they first have to homed. Homing is the procedure of searching for a hardware limit and defining this position as 0.0. When the 'Home all axes' is clicked, all three axes are homed consequtively. While homing, the motion controller can not interact with the software, so monitoring during homing is only possible on the motion controller itself, not within the software. 
-
-  
   <div style="border: 5px solid red; padding: 5px;">
-    <span style="color: red;"><b>WARNING:</b></span> Before homing, make sure to untighten the fiber clamp that is not held by the spring from the rails, such that both stages can move freely. Make sure that the vertical stage is also free to move and will not collide with any other parts of the setup. 
+    <span style="color: red;"><b>WARNING:</b></span> Please, do not, do not, do not use your computer USB to power this board! Please use an external voltage supply to drive it. 
 </div>
-
+<br>
+The evaluation board offers three ways for power supply: 1)ADP 5070 with LDOS 2) ADP 5070 3) Bench Supply. In order to select the way of power supply, there are multiple physical switches on the board that must be inserted or removed. 
 </details>
 
 <br>
