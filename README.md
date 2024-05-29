@@ -144,3 +144,51 @@ Below is a summary of the 24-bit register settings for the DAC:
 
 </details>
 
+## Code Structure
+
+<details>
+  <summary><b>Overview</b></summary>
+
+Performing cavity locking on a DSP board suffers from a variety of limitations. The most crucial one is handling multiple tasks simultaneously. In short, cavity locking can be summarized as:
+1. Scan
+2. Read error signal
+3. Apply PID on error signal
+4. Output the control signal
+
+This is achieved by using multiple interrupts:
+
+### CPU Timer 1
+- **Function**: Triggers an interrupt regularly every 10 µs.
+- **Purpose**: Used for scanning to produce a triangular wave. The frequency of the triangular wave is tuned by the clock frequency, and the amplitude is adjusted by changing the voltage level written to the DAC board.
+
+### ADC ISR Interrupt
+- **Function**: Triggers an interrupt when the ADC sampling is ready.
+- **Purpose**: Used to correct the control signal and also serves as a long-term measurement of the voltage variation during locking.
+
+### Serial Interrupt
+- **Function**: Mimics the effect of a physical interrupt.
+- **Purpose**: During locking, the user typically needs to communicate with the Teensy to set parameters such as the set point, PID coefficients, and commands to start/stop locking and scanning. A custom instruction set is sent through serial port communication with the Teensy.
+
+### CPU Timer 2
+- **Function**: Triggers an interrupt regularly every 1000 µs (1 ms), tunable down to 1 µs.
+- **Purpose**: Handles the PID control. Within this ISR, it stores the current error for integration and outputs the control signal.
+
+
+### CPU Timer 3(under construction)
+- **Fuction**: This interrupt is for tunning the PID during the locking process
+-**Purpose**: When locking to different peaks, a different set of PID parameters is needed. However, there is not way to theoretically calculate the prcise value for PID before you experiment it. Right now user have to relaunch the TEENSY to update the PID coefficients but for effectively tunning, it is good to have another interrupt to handle this. 
+</details>
+
+
+<details>
+  <summary><b>Instruction Set</b></summary>
+  Current instruction sets are compatible with: 
+
+  Toggle:x; where x is 1 or 0. This can turns on/off a triangular wave
+
+  Set:x; where x is a voltage level and for safety reason, if the user enters a value with abs(x)>0, this will force the voltage to set back to 0V. 
+
+  PID:P,I,D; this command will tell the TEENSY to begin locking to: Kp*e + Kd*de/dt+Ki*int e(t) dt. Notice that if you do not previously set a level, this will use 0 as a setpoint. In most of the cases, the setpoint depends on the voltage level of your peak, and they are not zero. To find the voltage level of the setpoint, Johnson has wrote a python script that takes a screenshot of the oscilloscope with channel 1 as the transmission signal and the channel 2 as the scanning triangular wave. 
+</details>
+
+
