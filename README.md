@@ -268,48 +268,55 @@ $$
 
 ---
 
+The error signal is: 
+
 $$
-(F(\omega) F^*(\omega + \beta) 
-    - F^*(\omega) F(\omega - \beta)) = 
+    \frac{4 r^2 \cos\left(\frac{\text{modulation}}{2 \, \text{fsr}}\right) \sin\left(\frac{\text{modulation} - \omega}{2 \, \text{fsr}}\right) \sin\left(\frac{\omega}{2 \, \text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\text{modulation} - \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} - \omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right)} 
 $$
 
 $$
-\frac{4 r^2 \cos\left(\frac{\text{modulation}}{2 \, \text{fsr}}\right) \sin\left(\frac{\text{modulation} - \omega}{2 \, \text{fsr}}\right) \sin\left(\frac{\omega}{2 \, \text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\text{modulation} - \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} - \omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right)} 
+    - \frac{4 i r^2 \sin\left(\frac{\text{modulation}}{2 \, \text{fsr}}\right) \sin\left(\frac{\text{modulation} - \omega}{2 \, \text{fsr}}\right) \sin\left(\frac{\omega}{2 \, \text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\text{modulation} - \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} - \omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right)} 
 $$
+
 $$
-- \frac{4 i r^2 \sin\left(\frac{\text{modulation}}{2 \, \text{fsr}}\right) \sin\left(\frac{\text{modulation} - \omega}{2 \, \text{fsr}}\right) \sin\left(\frac{\omega}{2 \, \text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\text{modulation} - \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} - \omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right)} 
+    + \frac{r^2}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
 $$
+
 $$
-+ \frac{r^2}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
+    - \frac{r^2 \cos\left(\frac{\omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
 $$
+
 $$
-- \frac{r^2 \cos\left(\frac{\omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
+    - \frac{r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
 $$
+
 $$
-- \frac{r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
+    + \frac{r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
 $$
+
 $$
-+ \frac{r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
+    - \frac{i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
 $$
+
 $$
-- \frac{i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
+    + \frac{i r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) \sin\left(\frac{\omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
 $$
+
 $$
-+ \frac{i r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) \sin\left(\frac{\omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
+    + \frac{i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
 $$
+
 $$
-+ \frac{i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
+    - \frac{i r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
 $$
+
 $$
-- \frac{i r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)} 
-$$
-$$
-+ \frac{r^2 \sin\left(\frac{\omega}{\text{fsr}}\right) \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)}
+    + \frac{r^2 \sin\left(\frac{\omega}{\text{fsr}}\right) \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)}{\left(-1 + r^2 \cos\left(\frac{\omega}{\text{fsr}}\right) + i r^2 \sin\left(\frac{\omega}{\text{fsr}}\right)\right) \left(-1 + r^2 \cos\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right) - i r^2 \sin\left(\frac{\text{modulation} + \omega}{\text{fsr}}\right)\right)}
 $$
 
 I swear to god this is antisymmetric because the plot of it, using a 10M hz Resonance EOM to modulate the laser light around 976nm, we have experimentally observed the genration of error signal 
 
-![Error Image](miscellaneous/error.png)
+![Error Image](Miscellaneous/error.png)
 
 
 This is the error signal we obtained during the scanning. This is a very good indicator 
@@ -321,22 +328,22 @@ This is the error signal we obtained during the scanning. This is a very good in
 Below is the result obtained by 20mins cavity locking: 
 
 
-![Error Image](miscellaneous/lock_20mins.png)
+![Error Image](Miscellaneous/lock_20mins.png)
 
 To analyze the error, here are the power spectrum density: 
 
-![Error Image](miscellaneous/trans_error_psd.png)
+![Error Image](Miscellaneous/trans_error_psd.png)
 
 
 Clearly, there 1k hz noise peak, to confirm if this is a stochastic noise, we run the experiments on the other day: 
 
-![Error Image](miscellaneous/different_compare.png)
+![Error Image](Miscellaneous/different_compare.png)
 
 The 1k hz noise falls into the acoustic regime and we highly suspect that this is due to the pump oscillation in dirk's lab that drives the vibration of air molecule that hits the fiber. As the polarization of the fiber is sensitive to the mechanical strain inside the fiber, such vibration will cause a change in polarization and it would brings change to the transmission signal that results in this 1khz signal. 
 
 To estimate the drift in frequency, here is the 20mins long measurement of error signal: 
 
-![Error Image](miscellaneous/error_zoom.png)
+![Error Image](Miscellaneous/error_zoom.png)
 
 We use the MZI to measure the frequency drift by extracting the phase of it and the frequency difference between peaks, we could use this to estimate the fluctuation in frequency: the maximum frequency drift is $\pm 2.822125Mhz$. Given a peak with 20M hz FWHM roughly, such drift is tolerable and would provide an acceptable locking as proposed in our proposal.
-![Error Image](miscellaneous/error_mzi.png)
+![Error Image](Miscellaneous/error_mzi.png)
