@@ -346,4 +346,5 @@ To estimate the drift in frequency, here is the 20mins long measurement of error
 ![Error Image](Miscellaneous/error_zoom.png)
 
 We use the MZI to measure the frequency drift by extracting the phase of it and the frequency difference between peaks, we could use this to estimate the fluctuation in frequency: the maximum frequency drift is $\pm 2.822125Mhz$. Given a peak with 20M hz FWHM roughly, such drift is tolerable and would provide an acceptable locking as proposed in our proposal.
+
 ![Error Image](Miscellaneous/error_mzi.png)
