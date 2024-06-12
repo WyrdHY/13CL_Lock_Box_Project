@@ -1,0 +1,8 @@
+availableResources =
+
+  2×1 cell array
+
+    {'ASRL::COM1'                                }
+    {'USB0::0x2A8D::0x0396::CN61297440::0::INSTR'}
+
+>> 

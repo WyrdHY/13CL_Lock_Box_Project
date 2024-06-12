@@ -28,7 +28,7 @@ In order to run the code on a new computer, first clone the GitHub repository. I
 
  
   <summary><b>Step 2: setup the environment</b></summary>
-    Simply uploading the laser_locking_v1.ino to TEENSY through the TEENSYDUINO. You have to manually press the button on top of TEENSY to succussfully reboot the program.
+    Simply uploading the laser_locking.ino to TEENSY through the TEENSYDUINO. You have to manually press the button on top of TEENSY to succussfully reboot the program.
 
 
 
