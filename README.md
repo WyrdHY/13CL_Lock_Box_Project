@@ -213,21 +213,21 @@ The product-to-sum identities are useful for converting products of sine and cos
 
 1. **Product of Sine and Cosine:**
 
-   $$
+$$
    \cos(A) \sin(B) = \frac{1}{2} [\sin(A + B) - \sin(A - B)]
-   $$
+$$
 
 2. **Product of Two Cosines:**
 
-   $$
+$$
    \cos(A) \cos(B) = \frac{1}{2} [\cos(A + B) + \cos(A - B)]
-   $$
+$$
 
 3. **Product of Two Sines:**
 
-   $$
+$$
    \sin(A) \sin(B) = \frac{1}{2} [\cos(A - B) - \cos(A + B)]
-   $$
+$$
 
 when A=B, we could effectively understand them as decouple your signal from a product into a DC signal and a high frequency signal, which we could later use a low pass filter to get the DC signal, or we could use the high pass filter to get the high frequency signal. The core is that you split your signal into two separte signals with distinct frequency. 
 
@@ -235,7 +235,7 @@ when A=B, we could effectively understand them as decouple your signal from a pr
 The reflected field is given by:
 
 $$
-E_{\text{ref}}(t) = E_0 \left[ r(\omega_0) J_0(\beta) e^{i \omega_0 t} + r(\omega_0 + \Omega) J_1(\beta) e^{i (\omega_0 + \Omega) t} - r(\omega_0 - \Omega) J_1(\beta) e^{i (\omega_0 - \Omega) t} \right]
+    E_{\text{ref}}(t) = E_0 \left[ r(\omega_0) J_0(\beta) e^{i \omega_0 t} + r(\omega_0 + \Omega) J_1(\beta) e^{i (\omega_0 + \Omega) t} - r(\omega_0 - \Omega) J_1(\beta) e^{i (\omega_0 - \Omega) t} \right]
 $$
 
 The photodetector measures the intensity of the reflected field. The signal is:
