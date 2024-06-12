@@ -1,0 +1,151 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[ ]:
+
+
+import scipy.io
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.fft import fft, fftfreq
+
+# Load the MATLAB file
+data = scipy.io.loadmat(r"C:\Users\Eric\Downloads\time_trans_error.mat")
+
+# Print the keys in the data dictionary
+print("Keys in the mat file:", data.keys())
+
+# Replace 'your_key_here' with the actual key name after inspecting the keys
+time_series_data = data['friday']
+
+# Extract time and signal data
+time = time_series_data[:, 0]
+signal1 = time_series_data[:, 1]
+signal2 = time_series_data[:, 2]
+
+# Plot the time-domain signals
+'''
+plt.figure(figsize=(14, 6), dpi=300)
+
+plt.subplot(2, 1, 1)
+plt.plot(time, signal1, linewidth=0.5, label='trans')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.legend()
+
+plt.subplot(2, 1, 2)
+plt.plot(time, signal2, linewidth=0.5, label='error')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.legend()
+
+plt.tight_layout()
+plt.savefig("time_domain_signals.png", dpi=300)  # Save the plot as a high-resolution PNG file
+plt.savefig("time_domain_signals.pdf", dpi=300)  # Save the plot as a high-resolution PDF file
+plt.show()
+'''
+# Remove the DC component
+#signal1 = signal1 - np.mean(signal1)
+#signal2 = signal2 - np.mean(signal2)
+
+# Compute the Fourier Transform of the signals
+fft_signal1 = fft(signal1)
+fft_signal2 = fft(signal2)
+
+# Compute the frequency bins
+N = len(time)
+T = time[1] - time[0]  # Assuming uniform sampling
+freq = fftfreq(N, T)
+
+# Take only the positive frequencies and apply the desired range filter
+positive_freqs = freq[:N//2]
+fft_signal1_positive = np.abs(fft_signal1[:N//2])
+fft_signal2_positive = np.abs(fft_signal2[:N//2])
+
+# Compute the power spectral density
+psd_signal1 = (fft_signal1_positive ** 2) / N
+psd_signal2 = (fft_signal2_positive ** 2) / N
+
+# Normalize the power spectral density
+total_power_signal1 = np.sum(psd_signal1)
+total_power_signal2 = np.sum(psd_signal2)
+normalized_psd_signal1 = psd_signal1 / total_power_signal1
+normalized_psd_signal2 = psd_signal2 / total_power_signal2
+
+# Set the desired frequency range
+freq_min = 0
+freq_max = 6000
+
+# Filter the frequencies within the specified range
+mask = (positive_freqs >= freq_min) & (positive_freqs <= freq_max)
+filtered_freqs = positive_freqs[mask]
+filtered_psd_signal1 = normalized_psd_signal1[mask]
+filtered_psd_signal2 = normalized_psd_signal2[mask]
+
+'''
+# Plot the normalized power spectral density within the specified range
+plt.figure(figsize=(14, 6), dpi=300)
+plt.subplot(2, 1, 1)
+plt.plot(filtered_freqs, filtered_psd_signal1, linewidth=0.5, label='trans')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Normalized Power Spectral Density')
+plt.legend()
+
+plt.subplot(2, 1, 2)
+plt.plot(filtered_freqs, filtered_psd_signal2, linewidth=0.5, label='error')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Normalized Power Spectral Density')
+plt.legend()
+plt.tight_layout()
+plt.savefig("normalized_psd.png", dpi=300)  # Save the plot as a high-resolution PNG file
+plt.savefig("normalized_psd.pdf", dpi=300)  # Save the plot as a high-resolution PDF file
+plt.show()
+'''
+
+# Plot the normalized power spectral density with log-log scale within the specified range
+plt.figure(figsize=(6, 4), dpi=400)
+
+#plt.subplot(2, 1, 1)
+plt.loglog(filtered_freqs, filtered_psd_signal1, linewidth=0.3,alpha = 0.6, color = 'aqua',label='Transmission')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Normalized Power Spectral Density')
+plt.legend()
+plt.show()
+#plt.subplot(2, 1, 2)
+plt.figure(figsize=(6, 4), dpi=400)
+plt.loglog(filtered_freqs, filtered_psd_signal2, linewidth=0.3,alpha = 0.6,color ='red', label='Error Signal')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Normalized Power Spectral Density')
+plt.legend()
+
+plt.tight_layout()
+#plt.savefig("loglog_normalized_psd.png", dpi=300)  # Save the plot as a high-resolution PNG file
+#plt.savefig("loglog_normalized_psd.pdf", dpi=300)  # Save the plot as a high-resolution PDF file
+plt.show()
+
+'''
+plt.loglog(positive_freqs, fft_signal2_positive, linewidth = 0.5)
+plt.title('FFT of error Signal')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Amplitude')
+
+
+# Plot the FFT of the signals with decreased linewidth
+plt.figure(figsize=(14, 6))
+plt.subplot(2, 1, 1)
+plt.loglog(positive_freqs, fft_signal1_positive, linewidth=0.5)
+plt.title('FFT of trans Signal (High-Pass Filtered)')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Amplitude')
+
+plt.subplot(2, 1, 2)
+plt.loglog(positive_freqs, fft_signal2_positive, linewidth=0.5)
+plt.title('FFT of error Signal (High-Pass Filtered)')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Amplitude')
+
+plt.tight_layout()
+#plt.savefig("fft_filtered_signals.png", dpi=300)  # Save the plot as a high-resolution PNG file
+#plt.savefig("fft_filtered_signals.pdf", dpi=300)  # Save the plot as a high-resolution PDF file
+plt.show()
+'''
